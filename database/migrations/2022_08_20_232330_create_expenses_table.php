@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('first_name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->boolean('fixed')->default(0); // if true is a fixed value, false meaning variable
+            $table->decimal('amount', 9, 2);
+            $table->string('proof_of_purchase')->nullable();
+            $table->decimal('taxes_paid', 9, 2);
+            $table->timestamp('purchased_at');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('expenses');
     }
 };
