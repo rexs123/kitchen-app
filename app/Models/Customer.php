@@ -10,7 +10,6 @@ class Customer extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded = [];
-    protected $primaryKey = 'cus_id';
 
     protected $casts = [
         'dob' => 'date',
