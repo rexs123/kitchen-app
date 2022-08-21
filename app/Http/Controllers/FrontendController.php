@@ -10,7 +10,7 @@ class FrontendController extends Controller
 {
     public function __construct()
     {
-        if (User::count() == 0) {
+        if (User::count() === 0) {
 			redirect()->route('setup.index')->send();
         }
     }
