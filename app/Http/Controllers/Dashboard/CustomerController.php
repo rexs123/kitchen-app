@@ -7,6 +7,8 @@ use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class CustomerController extends Controller
 {
@@ -36,9 +38,28 @@ class CustomerController extends Controller
 
     public function store(StoreCustomerRequest $request)
     {
-        $customer = Customer::create([]);
 
-        return redirect()->route('dashboard.customer.show', $customer)->with('success', 'Customer successfully created.');
+        $randomString = Str::random('18');
+
+        $customer = Customer::create([
+            'cus_id' => "cus_{$randomString}",
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'address' => json_decode($request->address),
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'allergies' => json_decode($request->allergies),
+            'charge_delivery' => $request->charge_delivery,
+            'dob' => ($request->dob)?: null
+        ]);
+
+        if ($request->avatar) {
+           Storage::disk(env('FILESYSTEM_DISK'))->put("/customers/{$customer->id}/avatars/", $request->avatar);
+            $customer->avatar = Storage::url("/customers/{$customer->id}/avatars/");
+            $customer->save();
+        }
+
+        return redirect()->route('dashboard.customers.show', $customer)->with('success', 'Customer successfully created.');
     }
 
     public function edit(Customer $customer)
@@ -50,7 +71,17 @@ class CustomerController extends Controller
 
     public function update(Customer $customer, UpdateCustomerRequest $request)
     {
-        return redirect()->route('dashboard.customer.show', $customer)->with('success', 'Customer successfully updated.');
+        $customer->update([
+            'address' => $request->address,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'allergies' => $request->allergies,
+            'charge_delivery' => $request->charge_delivery,
+            'avatar' => $request->avatar,
+            'dob' => $request->dob,
+        ]);
+
+        return redirect()->route('dashboard.customers.show', $customer)->with('success', 'Customer successfully updated.');
     }
 
     public function destroy(Customer $customer)
@@ -62,7 +93,7 @@ class CustomerController extends Controller
 
         $customer->delete();
 
-        return redirect()->route('dashboard.customer.index')->with('success', 'Customer successfully deleted.');
+        return redirect()->route('dashboard.customers.index')->with('success', 'Customer successfully deleted.');
     }
 
 }

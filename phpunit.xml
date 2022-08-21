@@ -22,7 +22,7 @@
         <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="CACHE_DRIVER" value="array"/>
         <server name="DB_CONNECTION" value="sqlite"/>
-        <server name="DB_DATABASE" value="database/database.sqlite"/>
+        <server name="DB_DATABASE" value="C:\laragon\www\kitchen-app\database\database_test.sqlite"/>
         <env name="MAIL_MAILER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
