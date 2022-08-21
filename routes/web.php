@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\ExpenseController;
 use App\Http\Controllers\Dashboard\OrderController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\SetupController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
+
+Route::get('/setup', [SetupController::class, 'index'])->name('setup.index');
 
 Route::get('/login', function () {
     return '';
