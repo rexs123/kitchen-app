@@ -22,7 +22,7 @@ class AccountingController extends Controller
         ]);
     }
 
-    public function show(Request $request)
+    public function show($filter, Request $request)
     {
         return view('dashboard.accounting.show', [
             'orders' => Order::all(),
