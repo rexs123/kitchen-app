@@ -60,7 +60,7 @@ class OrderController extends Controller
 
         // todo: emit event to update taxes.
 
-        return redirect()->route('dashboard.orders.show', $order)->with('Order successfully created and assigned to customer.');
+        return redirect()->route('dashboard.orders.show', $order)->with('success', 'Order successfully created and assigned to customer.');
     }
 
     public function edit(Order $order)
@@ -74,18 +74,18 @@ class OrderController extends Controller
     {
         // update variable fields provided in form request
 
-        return redirect()->route('dashboard.orders.show', $order)->with('Order successfully updated.');
+        return redirect()->route('dashboard.orders.show', $order)->with('success', 'Order successfully updated.');
     }
 
     public function destroy(Order $order, UpdateOrderRequest $request)
     {
         if ($order->status !== 'unpaid') {
-            return redirect()->route('dashboard.orders.index')->with('Order successfully has been paid and therefore cannot be deleted.');
+            return redirect()->route('dashboard.orders.index')->with('error', 'Order successfully has been paid and therefore cannot be deleted.');
         }
 
         $order->delete();
 
-        return redirect()->route('dashboard.orders.index')->with('Order successfully updated.');
+        return redirect()->route('dashboard.orders.index')->with('success', 'Order successfully updated.');
     }
 
 }
