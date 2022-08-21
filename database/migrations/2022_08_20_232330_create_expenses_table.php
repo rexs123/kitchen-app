@@ -19,7 +19,6 @@ return new class extends Migration
             $table->decimal('amount', 9, 2);
             $table->string('proof_of_purchase')->nullable();
             $table->decimal('taxes_paid', 9, 2);
-            $table->timestamp('purchased_at');
             $table->timestamps();
             $table->softDeletes();
         });
