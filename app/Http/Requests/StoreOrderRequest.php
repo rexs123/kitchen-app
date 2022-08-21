@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateExpenseRequest extends FormRequest
+class StoreOrderRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,7 +14,10 @@ class UpdateExpenseRequest extends FormRequest
     public function rules()
     {
         return [
-            'proof_of_purchase' => 'mimes:jpg,bmp,png|required',
+            'customer_id' => 'required|exists:customers,id',
+            'status' => 'required',
+            'products' => 'required|json',
+            'completed_at' => 'nullable|date',
         ];
     }
 }

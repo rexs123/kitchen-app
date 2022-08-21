@@ -16,4 +16,9 @@ class Product extends Model
         'ingredients' => 'json',
     ];
 
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
+    }
+
 }

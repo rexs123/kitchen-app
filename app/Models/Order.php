@@ -25,6 +25,11 @@ class Order extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
+
     public function scopeUnpaid($query)
     {
         return $query->where('status', 'unpaid');
