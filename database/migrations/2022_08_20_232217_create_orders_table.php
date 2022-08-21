@@ -23,6 +23,7 @@ return new class extends Migration
             $table->decimal('taxes', 9, 2)->default(0);
             $table->timestamp('completed_at')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

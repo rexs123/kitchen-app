@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->date('dob')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

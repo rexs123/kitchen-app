@@ -17,7 +17,7 @@ class ExpenseController extends Controller
     public function index()
     {
         return view('dashboard.orders.index', [
-            'expenses' => Expense::all()->paginate(20)
+            'expenses' => Expense::paginate(20)
         ]);
     }
 
