@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\ExpenseController;
 use App\Http\Controllers\Dashboard\OrderController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\SetupController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -43,6 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
+Route::get('/setup', [SetupController::class, 'index'])->name('setup.index');
+Route::post('/setup', [SetupController::class, 'store'])->name('setup.store');
 Route::prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 
