@@ -24,4 +24,14 @@ class Order extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+
+    public function scopeUnpaid($query)
+    {
+        return $query->where('status', 'unpaid');
+    }
+
+    public function scopePaid($query)
+    {
+        return $query->where('status', 'paid');
+    }
 }
