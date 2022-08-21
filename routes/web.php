@@ -79,3 +79,4 @@ Route::prefix('dashboard')->group(function () {
     });
 });
 
+require __DIR__.'/auth.php';
