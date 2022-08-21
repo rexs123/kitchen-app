@@ -18,7 +18,9 @@ class ProductController extends Controller
 
     public function index()
     {
-        return view('dashboard.products.index');
+        return view('dashboard.products.index', [
+            'products' => Product::paginate(20)
+        ]);
     }
 
     public function show(Product $product)

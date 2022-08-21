@@ -15,7 +15,7 @@ class CalendarController extends Controller
     public function index()
     {
         return view('dashboard.calendar.index', [
-            'orders' => Order::with(['customer', 'products']),
+            'orders' => Order::with(['customer', 'products']), // break this value down to the current month, add a sub route to populate next months
         ]);
     }
 }

@@ -20,7 +20,7 @@ class OrderController extends Controller
     public function index()
     {
         return view('dashboard.orders.index', [
-            'orders' => Order::with(['customer', 'products']),
+            'orders' => Order::with(['customer', 'products'])->paginate(20),
         ]);
     }
 
