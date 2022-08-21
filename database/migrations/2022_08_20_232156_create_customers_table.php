@@ -21,7 +21,7 @@ return new class extends Migration
             $table->json('address')->default('[]');
             $table->string('email')->unique();
             $table->string('phone_number');
-            $table->json('allergies')->nullable();
+            $table->json('allergies')->default('[]')->nullable();
             $table->boolean('charge_delivery')->default(1);
             $table->string('avatar')->nullable();
             $table->date('dob')->nullable();
