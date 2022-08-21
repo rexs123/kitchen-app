@@ -26,11 +26,6 @@ Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
 
 Route::get('/setup', [SetupController::class, 'index'])->name('setup.index');
 Route::post('/setup', [SetupController::class, 'store'])->name('setup.store');
-
-Route::get('/login', function () {
-    return '';
-})->name('login');
-
 Route::prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 
@@ -83,3 +78,4 @@ Route::prefix('dashboard')->group(function () {
     });
 });
 
+require __DIR__.'/auth.php';
