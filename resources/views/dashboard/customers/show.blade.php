@@ -2,6 +2,8 @@
 @extends('layouts.dashboard')
 @section('content')
     <div class="p-4">
+        <h1 class="text-xl font-bold mb-1">Viewing Customer: {{ $customer->id }}</h1>
+        <a href="{{ route('dashboard.customers.edit', $customer) }}" class="mb-3 block">Edit</a>
         <ul>
             <li>
                 <small class="block font-bold">

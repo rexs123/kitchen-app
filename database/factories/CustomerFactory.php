@@ -20,14 +20,14 @@ class CustomerFactory extends Factory
             'cus_id' => "cus_xxx",
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
-            'address' => json_encode([
+            'address' => [
                 'address_1' => fake()->streetAddress(),
                 'address_2' => '',
                 'city' => fake()->city(),
                 'state' => fake()->realTextBetween(5, 24),
                 'country' => fake()->country(),
                 'postal_code' => fake()->postcode(),
-            ]),
+            ],
             'email' => fake()->safeEmail(),
             'phone_number' => fake()->phoneNumber(),
             'allergies' => json_encode([

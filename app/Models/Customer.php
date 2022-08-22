@@ -14,8 +14,8 @@ class Customer extends Model
 
     protected $casts = [
         'dob' => 'datetime',
-        'allergies' => 'json',
-        'address' => 'json',
+        'allergies' => 'array',
+        'address' => 'array',
     ];
 
     protected $dates = [
@@ -40,5 +40,4 @@ class Customer extends Model
             get: fn ($value) => ucfirst($value),
         );
     }
-
 }

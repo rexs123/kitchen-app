@@ -15,10 +15,15 @@ class UpdateCustomerRequest extends FormRequest
     {
         {
             return [
-                'address' => 'json|required',
+                'address.address_1' => 'required',
+                'address.address_2' => 'nullable',
+                'address.city' => 'required',
+                'address.state' => 'nullable',
+                'address.country' => 'required',
+                'address.postal_code' => 'nullable',
                 'email' => 'required|email',
                 'phone_number' => 'required',
-                'allergies' => 'json|nullable',
+                'allergies' => 'required',
                 'charge_delivery' => 'boolean',
                 'avatar' => 'mimes:jpg,bmp,png|nullable',
                 'dob' => 'date|nullable'

@@ -127,7 +127,7 @@
                     id="allergies"
                     name="allergies"
                     placeholder="Allergies"
-                    value="{{ old('phone_number') }}"
+                    value="{{ old('allergies') }}"
                     class="border border-gray-200 block p-1 block w-full @error('allergies') border-red-600 @enderror"
                 >
                 <p class="text-sm text-gray-400">Individual allergies to be seperated by comma.</p>

@@ -56,7 +56,7 @@ class CustomerController extends Controller
             'email' => $request->email,
             'phone_number' => $request->phone_number,
             'allergies' => $request->allergies? json_encode(explode(",", $request->allergies)) : null,
-            'charge_delivery' => ($request->charge_delivery)?: true,
+            'charge_delivery' => ($request->charge_delivery)?: 0,
             'dob' => ($request->dob)?: null
         ]);
 
@@ -78,15 +78,29 @@ class CustomerController extends Controller
 
     public function update(Customer $customer, UpdateCustomerRequest $request)
     {
+        $address = array(
+            'address_1' => $request->address["address_1"],
+            'address_2' => ($request->address["address_2"])?: null,
+            'city' => $request->address["city"],
+            'state' => ($request->address["state"])?: null,
+            'country' => $request->address["country"],
+            'postal_code' => $request->address["postal_code"]
+        );
+
         $customer->update([
-            'address' => $request->address,
+            'address' => json_encode($address),
             'email' => $request->email,
             'phone_number' => $request->phone_number,
-            'allergies' => $request->allergies,
-            'charge_delivery' => $request->charge_delivery,
-            'avatar' => $request->avatar,
+            'allergies' => $request->allergies? json_encode(explode(",", $request->allergies)) : null,
+            'charge_delivery' => ($request->charge_delivery)?: 0,
             'dob' => $request->dob,
         ]);
+
+        if ($request->avatar) {
+            $file = Storage::disk(env('FILESYSTEM_DISK'))->put("/customers/{$customer->id}/avatars/", $request->avatar, 'public');
+            $customer->avatar = Storage::url($file);
+            $customer->save();
+        }
 
         return redirect()->route('dashboard.customers.show', $customer)->with('success', 'Customer successfully updated.');
     }

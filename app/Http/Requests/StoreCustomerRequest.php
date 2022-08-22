@@ -24,7 +24,7 @@ class StoreCustomerRequest extends FormRequest
             'address.postal_code' => 'nullable',
             'email' => 'required|email',
             'phone_number' => 'required',
-            'allergies' => 'nullable',
+            'allergies' => 'required',
             'charge_delivery' => 'boolean',
             'avatar' => 'mimes:jpg,bmp,png|nullable',
             'dob' => 'date|nullable'
