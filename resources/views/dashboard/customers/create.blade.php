@@ -147,6 +147,18 @@
                 @error('charge_delivery') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
             </div>
 
+            <div class="w-1/4 my-1">
+                <input
+                    type="file"
+                    id="avatar"
+                    name="avatar"
+                    class="border border-gray-200 inline-block mr-1 px-1 @error('avatar') border-red-600 @enderror"
+                >
+                <label for="avatar" class="mb-1 font-semibold inline-block">Upload Avatar</label>
+                @error('avatar') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+            </div>
+
+
             <button type="submit" class="border border-gray-300 px-5 py-2">Create new Customer</button>
         </form>
     </div>

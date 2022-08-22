@@ -61,8 +61,8 @@ class CustomerController extends Controller
         ]);
 
         if ($request->avatar) {
-            Storage::disk(env('FILESYSTEM_DISK'))->put("/customers/{$customer->id}/avatars/", $request->avatar);
-            $customer->avatar = Storage::url("/customers/{$customer->id}/avatars/");
+            $file = Storage::disk(env('FILESYSTEM_DISK'))->put("/customers/{$customer->id}/avatars/", $request->avatar, 'public');
+            $customer->avatar = Storage::url($file);
             $customer->save();
         }
 

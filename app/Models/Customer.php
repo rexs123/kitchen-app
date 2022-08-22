@@ -13,9 +13,13 @@ class Customer extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'dob' => 'date',
+        'dob' => 'datetime',
         'allergies' => 'json',
         'address' => 'json',
+    ];
+
+    protected $dates = [
+      'dob'
     ];
 
     public function orders()
