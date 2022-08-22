@@ -9,7 +9,6 @@ use App\Http\Controllers\Dashboard\OrderController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\SetupController;
-use App\Http\Controllers\SetupController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -29,8 +28,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
 
-Route::post('/setup', [SetupController::class, 'store'])->name('setup.store');
 Route::get('/setup', [SetupController::class, 'index'])->name('setup.index');
+Route::post('/setup', [SetupController::class, 'store'])->name('setup.store');
+
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
