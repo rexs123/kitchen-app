@@ -54,9 +54,9 @@
                     Birthday
                 </small>
                 @if($customer->dob)
-                    {{ $customer->dob }}
+                    {{ $customer->dob->format('Y-m-d') }}
                     <br>
-                    Age:  {{ $customer->dob->age() }}
+                    Age:  {{ $customer->dob->age }}
                 @else
                     Birth date not set.
                 @endif

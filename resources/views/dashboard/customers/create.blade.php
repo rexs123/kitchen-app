@@ -149,6 +149,20 @@
 
             <div class="w-1/4 my-1">
                 <input
+                    type="date"
+{{--                    todo: change this for a vue component, firefox does NOT support type=date --}}
+                    id="dob"
+                    name="dob"
+                    placeholder="Customer date of birth"
+                    value="{{ old('dob') }}"
+                    class="border border-gray-200 inline-block mr-1 px-1 @error('dob') border-red-600 @enderror"
+                >
+                <label for="dob" class="mb-1 font-semibold inline-block">Date of <birth></birth></label>
+                @error('dob') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+            </div>
+
+            <div class="w-1/4 my-1">
+                <input
                     type="file"
                     id="avatar"
                     name="avatar"
