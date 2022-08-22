@@ -15,7 +15,6 @@ class Customer extends Model
     protected $casts = [
         'dob' => 'datetime',
         'allergies' => 'array',
-        'address' => 'array',
     ];
 
     protected $dates = [
