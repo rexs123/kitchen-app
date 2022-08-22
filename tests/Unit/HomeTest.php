@@ -1,6 +1,9 @@
 <?php
+
+use App\Models\User;
 use function Pest\Laravel\get;
 
 test('has home', function () {
-  get('/')->assertStatus(200);
+    User::factory()->create();
+    get('/')->assertStatus(200);
 });

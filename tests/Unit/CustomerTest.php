@@ -23,18 +23,20 @@ test('if logged in user can create a new customer', function () {
 
 test('if a new customer can be stored', function () {
     $user = User::factory()->create();
+    $address = array(
+    );
 
     actingAs($user)->post('/dashboard/customers/store', [
-        'first_name' => fake()->firstName(),
-        'last_name' => fake()->lastName(),
-        'address' => json_encode([
+        'address' => [
             'address_1' => fake()->streetAddress(),
             'address_2' => '',
             'city' => fake()->city(),
             'state' => fake()->realTextBetween(5, 24),
             'country' => fake()->country(),
             'postal_code' => fake()->postcode(),
-        ]),
+        ],
+        'first_name' => fake()->firstName(),
+        'last_name' => fake()->lastName(),
         'email' => fake()->safeEmail(),
         'phone_number' => fake()->phoneNumber(),
         'allergies' => json_encode([
@@ -43,7 +45,7 @@ test('if a new customer can be stored', function () {
         'charge_delivery' => fake()->biasedNumberBetween(0, 1),
         'dob' => null,
         'avatar' => null,
-    ])->assertRedirect('/dashboard/customers/1');
+    ])->assertSessionHasNoErrors()->assertSessionHas('success')->assertRedirect('/dashboard/customers/1');
 });
 
 test('if a customer can be edited', function () {
