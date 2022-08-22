@@ -32,12 +32,36 @@
                 <div class="w-64">{{ $customer->email }}</div>
                 <div class="w-64">{{ $customer->phone_number }}</div>
                 <div class="w-96">
-                    @foreach(collect(json_decode($customer->address))->filter(function ($value) { return !empty($value); }) as $key => $value)
+                    <div>
+                        <span class="font-bold">Address 1</span>:
+                        {{ $customer->address_1 }}
+                    </div>
+                    @if($customer->address_2)
                         <div>
-                            <span class="font-bold">{{ ucwords(str_replace("_", " ", $key)) }}</span>:
-                            {{ $value }}
+                            <span class="font-bold">Address 2</span>:
+                            {{ $customer->address_2 }}
                         </div>
-                    @endforeach
+                    @endif
+                    <div>
+                        <span class="font-bold">City</span>:
+                        {{ $customer->city }}
+                    </div>
+                    @if($customer->state)
+                        <div>
+                            <span class="font-bold">State/Province</span>:
+                            {{ $customer->state }}
+                        </div>
+                    @endif
+                    <div>
+                        <span class="font-bold">Country</span>:
+                        {{ $customer->country }}
+                    </div>
+                    @if($customer->postal_code)
+                        <div>
+                            <span class="font-bold">Postal/Zip Code</span>:
+                            {{ $customer->postal_code }}
+                        </div>
+                    @endif
                 </div>
                 <div class="w-96">
                     @foreach(json_decode($customer->allergies) as $allergy)

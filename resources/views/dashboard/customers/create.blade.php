@@ -38,61 +38,76 @@
             </div>
             <div class="flex my-3">
                 <div class="w-1/4 my-1">
-                    <label for="address" class="mb-1 block font-semibold">Address</label>
+                    <label for="address_1" class="mb-1 block font-semibold">Address 1</label>
                     <input
                         type="text"
-                        id="address"
-                        name="address[address_1]"
+                        id="address_1"
+                        name="address_1"
                         placeholder="Address 1"
-                        value="{{ old('address.address_1') }}"
-                        class="border border-gray-200 block p-1 block w-full @error('address.address_1') border-red-600 @enderror"
+                        value="{{ old('address_1') }}"
+                        class="border border-gray-200 block p-1 block w-full @error("address_1") border-red-600 @enderror"
                     >
-                    @error('address.address_1') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                    @error("address_1") <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                </div>
+                <div class="w-1/4 my-1">
+                    <label for="address_2" class="mb-1 block font-semibold">Address 2</label>
                     <input
                         type="text"
-                        id="address"
-                        name="address[address_2]"
+                        id="address_2"
+                        name="address_2"
                         placeholder="Address 2"
-                        value="{{ old('address.address_2') }}"
-                        class="border border-gray-200 block p-1 block w-full @error('address.address_2') border-red-600 @enderror"
+                        value="{{ old('address_2') }}"
+                        class="border border-gray-200 block p-1 block w-full @error("address_2") border-red-600 @enderror"
                     >
-                    @error('address.address_2') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                    @error("address_2") <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                </div>
+                <div class="w-1/4 my-1">
+                    <label for="city" class="mb-1 block font-semibold">City</label>
                     <input
                         type="text"
-                        id="address"
-                        name="address[city]"
+                        id="city"
+                        name="city"
                         placeholder="City"
-                        value="{{ old('address.city') }}"
-                        class="border border-gray-200 block p-1 block w-full @error('address.city') border-red-600 @enderror"
+                        value="{{ old('city') }}"
+                        class="border border-gray-200 block p-1 block w-full @error("city") border-red-600 @enderror"
                     >
-                    @error('address.city') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                    @error("city") <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                </div>
+                <div class="w-1/4 my-1">
+                    <label for="state" class="mb-1 block font-semibold">State or Province</label>
                     <input
                         type="text"
-                        id="address"
-                        name="address[state]"
-                        placeholder="State"
-                        value="{{ old('address.state') }}"
-                        class="border border-gray-200 block p-1 block w-full @error('address.state') border-red-600 @enderror"
+                        id="state"
+                        name="state"
+                        placeholder="State or Province"
+                        value="{{ old('state') }}"
+                        class="border border-gray-200 block p-1 block w-full @error("state") border-red-600 @enderror"
                     >
-                    @error('address.state') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                    @error("state") <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                </div>
+                <div class="w-1/4 my-1">
+                    <label for="country" class="mb-1 block font-semibold">Country</label>
                     <input
                         type="text"
-                        id="address"
-                        name="address[country]"
+                        id="country"
+                        name="country"
                         placeholder="Country"
-                        value="{{ old('address.country') }}"
-                        class="border border-gray-200 block p-1 block w-full @error('address.country') border-red-600 @enderror"
+                        value="{{ old('country') }}"
+                        class="border border-gray-200 block p-1 block w-full @error("country") border-red-600 @enderror"
                     >
-                    @error('address.country') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                    @error("country") <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                </div>
+                <div class="w-1/4 my-1">
+                    <label for="postal_code" class="mb-1 block font-semibold">Postal Code or Zip Code</label>
                     <input
                         type="text"
-                        id="address"
-                        name="address[postal_code]"
-                        placeholder="Postal Code"
-                        value="{{ old('address.postal_code') }}"
-                        class="border border-gray-200 block p-1 block w-full @error('address.postal_code') border-red-600 @enderror"
+                        id="postal_code"
+                        name="postal_code"
+                        placeholder="Postal Code or Zip Code"
+                        value="{{ old('postal_code') }}"
+                        class="border border-gray-200 block p-1 block w-full @error("postal_code") border-red-600 @enderror"
                     >
-                    @error('address.postal_code') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                    @error("postal_code") <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
                 </div>
             </div>
             <div class="w-1/4 my-1">
@@ -132,6 +147,30 @@
                 >
                 <p class="text-sm text-gray-400">Individual allergies to be seperated by comma.</p>
                 @error('allergies') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+            </div>
+
+            <div class="w-1/4 my-1">
+                <label for="notes" class="mb-1 block font-semibold">Notes</label>
+<textarea
+    type="text"
+    id="notes"
+    name="notes"
+    placeholder="Notes"
+    class="border border-gray-200 block p-1 block w-full @error('notes') border-red-600 @enderror"
+>{{ old('notes') }}</textarea>
+                @error('notes') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+            </div>
+
+            <div class="w-1/4 my-1">
+                <label for="delivery_instructions" class="mb-1 block font-semibold">Delivery Instructions</label>
+<textarea
+    type="text"
+    id="delivery_instructions"
+    name="delivery_instructions"
+    placeholder="Delivery Instructions"
+    class="border border-gray-200 block p-1 block w-full @error('delivery_instructions') border-red-600 @enderror"
+>{{ old('notes') }}</textarea>
+                @error('delivery_instructions') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
             </div>
 
             <div class="w-1/4 my-1">

@@ -28,14 +28,12 @@ test('if a new customer can be stored', function () {
     $user = User::factory()->create();
 
     actingAs($user)->post('/dashboard/customers/store', [
-        'address' => [
-            'address_1' => fake()->streetAddress(),
-            'address_2' => '',
-            'city' => fake()->city(),
-            'state' => fake()->realTextBetween(5, 24),
-            'country' => fake()->country(),
-            'postal_code' => fake()->postcode(),
-        ],
+        'address_1' => fake()->streetAddress(),
+        'address_2' => '',
+        'city' => fake()->city(),
+        'state' => fake()->realTextBetween(5, 24),
+        'country' => fake()->country(),
+        'postal_code' => fake()->postcode(),
         'first_name' => fake()->firstName(),
         'last_name' => fake()->lastName(),
         'email' => fake()->safeEmail(),
@@ -43,6 +41,8 @@ test('if a new customer can be stored', function () {
         'allergies' => json_encode([
             fake()->realTextBetween(5, 24),
         ]),
+        'notes' => fake()->realText(),
+        'delivery_instructions' => fake()->realtext(),
         'charge_delivery' => fake()->biasedNumberBetween(0, 1),
         'dob' => null,
         'avatar' => null,
@@ -70,7 +70,14 @@ test('if a customer can be updated', function () {
     $customer = Customer::factory()->create();
 
     actingAs($user)->put('/dashboard/customers/1/update', [
-        'address' => $customer->address,
+        'address_1' => $customer->address_1,
+        'address_2' => $customer->address_2,
+        'city' => $customer->city,
+        'state' => $customer->state,
+        'country' => $customer->country,
+        'postal_code' => $customer->postal_code,
+        'notes' => $customer->notes,
+        'delivery_instructions' => $customer->delivery_instructions,
         'email' => 'me@rexsdev.com',
         'phone_number' => $customer->phone_number,
         'allergies' => $customer->allergies,
@@ -85,7 +92,14 @@ test('if an avatar can  be uploaded', function () {
     $customer = Customer::factory()->create();
 
     actingAs($user)->put('/dashboard/customers/1/update', [
-        'address' => $customer->address,
+        'address_1' => $customer->address_1,
+        'address_2' => $customer->address_2,
+        'city' => $customer->city,
+        'state' => $customer->state,
+        'country' => $customer->country,
+        'postal_code' => $customer->postal_code,
+        'notes' => $customer->notes,
+        'delivery_instructions' => $customer->delivery_instructions,
         'email' => 'me@rexsdev.com',
         'phone_number' => $customer->phone_number,
         'allergies' => $customer->allergies,

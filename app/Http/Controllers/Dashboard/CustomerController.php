@@ -39,21 +39,20 @@ class CustomerController extends Controller
     {
 
         $randomString = Str::random('18');
-        $address = array(
-            'address_1' => $request->address["address_1"],
-            'address_2' => ($request->address["address_2"])?: null,
-            'city' => $request->address["city"],
-            'state' => ($request->address["state"])?: null,
-            'country' => $request->address["country"],
-            'postal_code' => $request->address["postal_code"]
-        );
 
         $customer = Customer::create([
             'cus_id' => "cus_{$randomString}",
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            'address' => json_encode($address),
+            'address_1' => $request->address_1,
+            'address_2' => ($request->address_2)?: null,
+            'city' => $request->city,
+            'state' => ($request->state)?: null,
+            'country' => $request->country,
+            'postal_code' => $request->postal_code,
             'email' => $request->email,
+            'delivery_instructions' => $request->delivery_instructions,
+            'notes' => $request->notes,
             'phone_number' => $request->phone_number,
             'allergies' => $request->allergies? json_encode(explode(",", $request->allergies)) : null,
             'charge_delivery' => ($request->charge_delivery)?: 0,
@@ -78,17 +77,15 @@ class CustomerController extends Controller
 
     public function update(Customer $customer, UpdateCustomerRequest $request)
     {
-        $address = array(
-            'address_1' => $request->address["address_1"],
-            'address_2' => ($request->address["address_2"])?: null,
-            'city' => $request->address["city"],
-            'state' => ($request->address["state"])?: null,
-            'country' => $request->address["country"],
-            'postal_code' => $request->address["postal_code"]
-        );
-
         $customer->update([
-            'address' => json_encode($address),
+            'address_1' => $request->address_1,
+            'address_2' => ($request->address_2)?: null,
+            'city' => $request->city,
+            'state' => ($request->state)?: null,
+            'country' => $request->country,
+            'postal_code' => $request->postal_code,
+            'delivery_instructions' => $request->delivery_instructions,
+            'notes' => $request->notes,
             'email' => $request->email,
             'phone_number' => $request->phone_number,
             'allergies' => $request->allergies? json_encode(explode(",", $request->allergies)) : null,

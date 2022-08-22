@@ -38,18 +38,76 @@
             </div>
             <div class="flex my-3">
                 <div class="w-1/4 my-1">
-                    <label for="address" class="mb-1 block font-semibold">Address</label>
-                    @foreach(json_decode($customer->address) as $key => $value)
+                    <label for="address_1" class="mb-1 block font-semibold">Address 1</label>
                     <input
                         type="text"
-                        id="address"
-                        name="address[{{ $key }}]"
-                        placeholder="{{ ucwords(str_replace("_", " ", $key)) }}"
-                        value="{{ $value }}"
-                        class="border border-gray-200 block p-1 block w-full @error("address.{$key}") border-red-600 @enderror"
+                        id="address_1"
+                        name="address_1"
+                        placeholder="Address 1"
+                        value="{{ $customer->address_1 }}"
+                        class="border border-gray-200 block p-1 block w-full @error("address_1") border-red-600 @enderror"
                     >
-                    @error("address.{$key}") <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
-                    @endforeach
+                    @error("address_1") <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                </div>
+                <div class="w-1/4 my-1">
+                    <label for="address_2" class="mb-1 block font-semibold">Address 2</label>
+                    <input
+                        type="text"
+                        id="address_2"
+                        name="address_2"
+                        placeholder="Address 2"
+                        value="{{ $customer->address_2 }}"
+                        class="border border-gray-200 block p-1 block w-full @error("address_2") border-red-600 @enderror"
+                    >
+                    @error("address_2") <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                </div>
+                <div class="w-1/4 my-1">
+                    <label for="city" class="mb-1 block font-semibold">City</label>
+                    <input
+                        type="text"
+                        id="city"
+                        name="city"
+                        placeholder="City"
+                        value="{{ $customer->city }}"
+                        class="border border-gray-200 block p-1 block w-full @error("city") border-red-600 @enderror"
+                    >
+                    @error("city") <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                </div>
+                <div class="w-1/4 my-1">
+                    <label for="state" class="mb-1 block font-semibold">State or Province</label>
+                    <input
+                        type="text"
+                        id="state"
+                        name="state"
+                        placeholder="State or Province"
+                        value="{{ $customer->state }}"
+                        class="border border-gray-200 block p-1 block w-full @error("state") border-red-600 @enderror"
+                    >
+                    @error("state") <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                </div>
+                <div class="w-1/4 my-1">
+                    <label for="country" class="mb-1 block font-semibold">Country</label>
+                    <input
+                        type="text"
+                        id="country"
+                        name="country"
+                        placeholder="Country"
+                        value="{{ $customer->country }}"
+                        class="border border-gray-200 block p-1 block w-full @error("country") border-red-600 @enderror"
+                    >
+                    @error("country") <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                </div>
+                <div class="w-1/4 my-1">
+                    <label for="postal_code" class="mb-1 block font-semibold">Postal Code or Zip Code</label>
+                    <input
+                        type="text"
+                        id="postal_code"
+                        name="postal_code"
+                        placeholder="Postal Code or Zip Code"
+                        value="{{ $customer->postal_code }}"
+                        class="border border-gray-200 block p-1 block w-full @error("postal_code") border-red-600 @enderror"
+                    >
+                    @error("postal_code") <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
                 </div>
             </div>
             <div class="w-1/4 my-1">
