@@ -169,7 +169,7 @@
     name="delivery_instructions"
     placeholder="Delivery Instructions"
     class="border border-gray-200 block p-1 block w-full @error('delivery_instructions') border-red-600 @enderror"
->{{ old('notes') }}</textarea>
+>{{ old('delivery_instructions') }}</textarea>
                 @error('delivery_instructions') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
             </div>
 

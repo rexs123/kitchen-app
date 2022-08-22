@@ -60,6 +60,18 @@
                 {{ $customer->phone_number }}
             </li>
             <li>
+                <small class="block font-bold">
+                   Notes
+                </small>
+                {{ $customer->notes }}
+            </li>
+            <li>
+                <small class="block font-bold">
+                   Delivery Instructions
+                </small>
+                {{ $customer->delivery_instrctions }}
+            </li>
+            <li>
                 <small class="block font-bold mb-1">
                     Allergies
                 </small>

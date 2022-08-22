@@ -134,7 +134,29 @@
                 >
                 @error('phone_number') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
             </div>
+            <div class="w-1/4 my-1">
+                <label for="notes" class="mb-1 block font-semibold">Notes</label>
+                <textarea
+                    type="text"
+                    id="notes"
+                    name="notes"
+                    placeholder="Notes"
+                    class="border border-gray-200 block p-1 block w-full @error('notes') border-red-600 @enderror"
+                >{{ $customer->notes }}</textarea>
+                @error('notes') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+            </div>
 
+            <div class="w-1/4 my-1">
+                <label for="delivery_instructions" class="mb-1 block font-semibold">Delivery Instructions</label>
+                <textarea
+                    type="text"
+                    id="delivery_instructions"
+                    name="delivery_instructions"
+                    placeholder="Delivery Instructions"
+                    class="border border-gray-200 block p-1 block w-full @error('delivery_instructions') border-red-600 @enderror"
+                >{{ $customer->delivery_instructions }}</textarea>
+                @error('delivery_instructions') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+            </div>
             <div class="w-1/4 my-1">
                 <label for="allergies" class="mb-1 block font-semibold">Allergies</label>
                 <input
