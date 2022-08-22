@@ -19,7 +19,7 @@ class CustomerController extends Controller
     public function index()
     {
         return view('dashboard.customers.index', [
-            'customers' => Customer::paginate(20)
+            'customers' => Customer::orderBy('id', 'desc')->paginate(20)
         ]);
     }
 
@@ -39,21 +39,29 @@ class CustomerController extends Controller
     {
 
         $randomString = Str::random('18');
+        $address = array(
+            'address_1' => $request->address["address_1"],
+            'address_2' => ($request->address["address_2"])?: null,
+            'city' => $request->address["city"],
+            'state' => ($request->address["state"])?: null,
+            'country' => $request->address["country"],
+            'postal_code' => $request->address["postal_code"]
+        );
 
         $customer = Customer::create([
             'cus_id' => "cus_{$randomString}",
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            'address' => json_decode($request->address),
+            'address' => json_encode($address),
             'email' => $request->email,
             'phone_number' => $request->phone_number,
-            'allergies' => json_decode($request->allergies),
-            'charge_delivery' => $request->charge_delivery,
+            'allergies' => $request->allergies? json_encode(explode(",", $request->allergies)) : null,
+            'charge_delivery' => ($request->charge_delivery)?: true,
             'dob' => ($request->dob)?: null
         ]);
 
         if ($request->avatar) {
-           Storage::disk(env('FILESYSTEM_DISK'))->put("/customers/{$customer->id}/avatars/", $request->avatar);
+            Storage::disk(env('FILESYSTEM_DISK'))->put("/customers/{$customer->id}/avatars/", $request->avatar);
             $customer->avatar = Storage::url("/customers/{$customer->id}/avatars/");
             $customer->save();
         }

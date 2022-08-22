@@ -14,7 +14,7 @@ class SetupRequest extends FormRequest
      */
     public function authorize()
     {
-        return User::count() == 0;
+        return User::count() === 0;
     }
 
     /**
