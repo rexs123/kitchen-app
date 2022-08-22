@@ -23,16 +23,15 @@ class SetupController extends Controller
 
 	public function store(SetupRequest $request)
 	{
-		$validated = $request->validated();
 		$user = User::create([
-			'first_name' => $validated['first_name'],
-			'last_name' => $validated['last_name'],
-			'email' => $validated['email'],
-			'password' => Hash::make($validated['password'])
+			'first_name' => $request->first_name,
+			'last_name' => $request->last_name,
+			'email' => $request->email,
+			'password' => $request->password,
 		]);
 
-		Auth::login($user, $remember = true);
+		Auth::login($user, true);
 
-		return redirect('/')->with('success', 'App successfully setup.');
+		return redirect('/dashboard')->with('success', 'App successfully setup.');
 	}
 }
