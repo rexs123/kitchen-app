@@ -12,13 +12,13 @@ class Product extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'allergies' => 'json',
-        'ingredients' => 'json',
+        'allergies' => 'array',
+        'ingredients' => 'array',
     ];
 
     public function orders()
     {
-        return $this->belongsToMany(Order::class);
+        return $this->belongsToMany(Order::class, 'product_order');
     }
 
 }

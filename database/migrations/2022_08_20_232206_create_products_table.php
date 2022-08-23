@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('image')->nullable();
             $table->longText('description');
-            $table->json('ingredients')->default('[]');
-            $table->json('allergens')->default('[]');
+            $table->json('ingredients')->default('[]')->nullable();
+            $table->json('allergens')->default('[]')->nullable();
             $table->decimal('price',9, 2);
             $table->decimal('weight',9, 2);
             $table->decimal('cost_of_materials',9, 2)->nullable();

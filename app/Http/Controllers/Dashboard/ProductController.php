@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use function PHPUnit\Framework\directoryExists;
 
 class ProductController extends Controller
@@ -39,15 +40,21 @@ class ProductController extends Controller
     {
         $product = Product::create([
             'name' => $request->name,
-            'image' => '', // storage handling
+            'image' => null,
             'description' => $request->description,
-            'ingredients' => json_decode($request->ingredients),
-            'allergens' => json_decode($request->ingredients),
+            'ingredients' => $request->ingredients? json_encode(explode(",", $request->ingredients)) : null,
+            'allergens' => $request->allergens? json_encode(explode(",", $request->allergens)) : null,
             'price' => $request->price,
             'weight' => $request->weight,
             'cost_of_materials' => $request->cost_of_materials,
             'cost_of_ingredients' => $request->cost_of_ingredients,
         ]);
+
+        if ($request->image) {
+            $file = Storage::disk(env('FILESYSTEM_DISK'))->put("/products/{$product->id}/images/", $request->image, 'public');
+            $product->image = Storage::url($file);
+            $product->save();
+        }
 
         return redirect()->route('dashboard.products.show', $product)->with('success', 'Product successfully created.');
     }
@@ -64,9 +71,8 @@ class ProductController extends Controller
     {
         //todo: validate if this belongs to any PAID orders; if so deny to update on price, and weight
 
-        $product = $product->update([
+        $product->update([
             'name' => $request->name,
-            'image' => '', // storage handling
             'description' => $request->description,
             'ingredients' => json_decode($request->ingredients),
             'allergens' => json_decode($request->ingredients),
@@ -75,6 +81,12 @@ class ProductController extends Controller
             'cost_of_materials' => $request->cost_of_materials,
             'cost_of_ingredients' => $request->cost_of_ingredients,
         ]);
+
+        if ($request->image) {
+            $file = Storage::disk(env('FILESYSTEM_DISK'))->put("/products/{$product->id}/images/", $request->image, 'public');
+            $product->image = Storage::url($file);
+            $product->save();
+        }
 
         return redirect()->route('dashboard.products.show', $product)->with('success', 'Product successfully updated.');
     }

@@ -19,10 +19,10 @@ class StoreProductRequest extends FormRequest
             'description' => 'required',
             'ingredients' => 'nullable|json',
             'allergens' => 'nullable|json',
-            'price' => 'number|required',
-            'weight' => 'number|required',
-            'cost_of_materials' => 'number|nullable',
-            'cost_of_ingredients' => 'number|nullable',
+            'price' => 'numeric|required',
+            'weight' => 'numeric|required',
+            'cost_of_materials' => 'numeric|nullable',
+            'cost_of_ingredients' => 'numeric|nullable',
         ];
     }
 }
