@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,13 +13,30 @@ class Product extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'allergies' => 'array',
         'ingredients' => 'array',
+        'allergens' => 'array',
     ];
 
     public function orders()
     {
         return $this->belongsToMany(Order::class, 'product_order');
+    }
+
+
+    protected function ingredients(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => collect(json_decode($value))->toArray(),
+            set: fn ($value) => json_encode($value),
+        );
+    }
+
+    protected function allergens(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => collect(json_decode($value))->toArray(),
+            set: fn ($value) => json_encode($value),
+        );
     }
 
 }

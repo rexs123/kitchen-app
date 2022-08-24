@@ -33,7 +33,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('dashboard.orders.create');
+        return view('dashboard.products.create');
     }
 
     public function store(StoreProductRequest $request)
@@ -74,8 +74,8 @@ class ProductController extends Controller
         $product->update([
             'name' => $request->name,
             'description' => $request->description,
-            'ingredients' => json_decode($request->ingredients),
-            'allergens' => json_decode($request->ingredients),
+            'ingredients' => $request->ingredients? json_encode(explode(",", $request->ingredients)) : null,
+            'allergens' => $request->allergens? json_encode(explode(",", $request->allergens)) : null,
             'price' => $request->price,
             'weight' => $request->weight,
             'cost_of_materials' => $request->cost_of_materials,

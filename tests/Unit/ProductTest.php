@@ -6,8 +6,14 @@ use Illuminate\Http\UploadedFile;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 
-test('has products route', function () {
+test('has products redirects to login', function () {
     get('/dashboard/products')->assertStatus(302);
+});
+
+test('can the products route be viewed', function () {
+    $product = Product::factory()->create();
+    $user = User::factory()->create();
+    actingAs($user)->get('/dashboard/products')->assertStatus(200);
 });
 
 test('has products if authenticated', function () {
