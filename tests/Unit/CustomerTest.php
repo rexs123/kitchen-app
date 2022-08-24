@@ -52,7 +52,6 @@ test('if a customer can be viewed', function () {
     $user = User::factory()->create();
     $customer = Customer::factory()->create();
 
-    // todo: fix error 500 as address casts as array, but views as string
     actingAs($user)->get('/dashboard/customers/1')->assertStatus(200);
 });
 
@@ -60,7 +59,6 @@ test('if a customer can be edited', function () {
     $user = User::factory()->create();
     $customer = Customer::factory()->create();
 
-    // todo: fix error 500 as address casts as array, but views as string
     actingAs($user)->get('/dashboard/customers/1/edit')->assertStatus(200);
 });
 
