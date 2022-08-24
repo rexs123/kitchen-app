@@ -14,7 +14,6 @@ test('if logged in user can view customers', function () {
     $user = User::factory()->create();
     $customer = Customer::factory()->create();
 
-    // todo: fix error 500 as address casts as array, but views as string
     actingAs($user)->get('/dashboard/customers')->assertStatus(200);
 });
 
