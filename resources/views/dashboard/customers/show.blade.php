@@ -109,6 +109,12 @@
                     No avatar found.
                 @endif
             </li>
+            <li>
+                <small class="block font-bold">
+                    Customer Since
+                </small>
+                {{ $customer->created_at }}
+            </li>
         </ul>
     </div>
 @endsection
