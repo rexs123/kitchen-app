@@ -25,14 +25,16 @@
                         {{ $product->name }}
                     </a>
                 </div>
-                <div class="w-96">Description</div>
                 <div class="w-96">
-                    @foreach($product->ingredients as $allergen)
+                    {{ $product->description }}
+                </div>
+                <div class="w-96">
+                    @foreach((array)json_decode($product->ingredients) as $allergen)
                         {{ ucfirst($allergen) }}<span class="last:hidden">,</span>
                     @endforeach
                 </div>
                 <div class="w-96">
-                    @foreach($product->allergens as $allergen)
+                    @foreach((array)json_decode($product->allergens) as $allergen)
                         {{ ucfirst($allergen) }}<span class="last:hidden">,</span>
                     @endforeach
                 </div>

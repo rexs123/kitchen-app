@@ -42,8 +42,8 @@ class ProductController extends Controller
             'name' => $request->name,
             'image' => null,
             'description' => $request->description,
-            'ingredients' => $request->ingredients? json_encode(explode(",", $request->ingredients)) : null,
-            'allergens' => $request->allergens? json_encode(explode(",", $request->allergens)) : null,
+            'ingredients' => $request->ingredients? json_encode($request->ingredients) : null,
+            'allergens' => $request->allergens? json_encode( $request->allergens) : null,
             'price' => $request->price,
             'weight' => $request->weight,
             'cost_of_materials' => $request->cost_of_materials,
@@ -61,7 +61,7 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        return view('dashboard.orders.edit', [
+        return view('dashboard.products.edit', [
             'product' => $product
         ]);
     }
@@ -74,8 +74,8 @@ class ProductController extends Controller
         $product->update([
             'name' => $request->name,
             'description' => $request->description,
-            'ingredients' => $request->ingredients? json_encode(explode(",", $request->ingredients)) : null,
-            'allergens' => $request->allergens? json_encode(explode(",", $request->allergens)) : null,
+            'ingredients' => $request->ingredients? json_encode($request->ingredients) : null,
+            'allergens' => $request->allergens? json_encode($request->allergens) : null,
             'price' => $request->price,
             'weight' => $request->weight,
             'cost_of_materials' => $request->cost_of_materials,

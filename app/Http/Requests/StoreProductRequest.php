@@ -17,12 +17,20 @@ class StoreProductRequest extends FormRequest
             'name' => 'string|required',
             'image' => 'mimes:jpg,bmp,png|nullable',
             'description' => 'required',
-            'ingredients' => 'nullable',
-            'allergens' => 'nullable',
+            'ingredients' => 'nullable|array',
+            'allergens' => 'nullable|array',
             'price' => 'numeric|required',
             'weight' => 'numeric|required',
             'cost_of_materials' => 'numeric|nullable',
             'cost_of_ingredients' => 'numeric|nullable',
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'ingredients' => $this->ingredients? explode(',', $this->ingredients) : NULL,
+            'allergens' => $this->allergens? explode(',', $this->allergens) : NULL
+        ]);
     }
 }

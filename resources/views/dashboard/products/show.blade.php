@@ -16,7 +16,7 @@
                     Ingredients
                 </small>
                 <div class="-mx-1">
-                    @foreach($product->ingredients as $ingredient)
+                    @foreach((array)json_decode($product->ingredients) as $ingredient)
                         <span class="bg-gray-300 rounded py-1 px-2 inline-block mx-1">{{ ucfirst($ingredient) }}</span>
                     @endforeach
                 </div>
@@ -26,7 +26,7 @@
                     Allergens
                 </small>
                 <div class="-mx-1">
-                    @foreach($product->allergens as $allergy)
+                    @foreach((array)json_decode($product->allergens) as $allergy)
                         <span class="bg-gray-300 rounded py-1 px-2 inline-block mx-1">{{ ucfirst($allergy) }}</span>
                     @endforeach
                 </div>
@@ -71,6 +71,16 @@
                     <p>${{ $product->cost_of_materials }}</p>
                 </div>
             </li>
+            @if($product->image)
+                <li>
+                    <small class="block font-bold my-1">
+                        image
+                    </small>
+                    <div>
+                        <img src="{{ $product->image }}" alt="{{ $product->name }}" class="w-96 h-96 object-cover">
+                    </div>
+                </li>
+            @endif
             <li>
                 <small class="block font-bold my-1">
                     Created At

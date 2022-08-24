@@ -23,20 +23,18 @@ class Product extends Model
     }
 
 
-    protected function ingredients(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => collect(json_decode($value))->toArray(),
-            set: fn ($value) => json_encode($value),
-        );
-    }
-
-    protected function allergens(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => collect(json_decode($value))->toArray(),
-            set: fn ($value) => json_encode($value),
-        );
-    }
+//    protected function ingredients(): Attribute
+//    {
+//        return Attribute::make(
+//            set: fn ($value) => json_encode($value),
+//        );
+//    }
+//
+//    protected function allergens(): Attribute
+//    {
+//        return Attribute::make(
+//            set: fn ($value) => json_encode($value),
+//        );
+//    }
 
 }
