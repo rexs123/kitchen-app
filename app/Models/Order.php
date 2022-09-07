@@ -11,8 +11,9 @@ class Order extends Model
     use HasFactory, SoftDeletes;
     protected $guarded = [];
 
-    protected $casts = [
-        'completed_at' => 'datetime',
+    protected $dates = [
+        'completed_at',
+        'delivered_at',
     ];
 
     public function customer()

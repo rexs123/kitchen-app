@@ -16,8 +16,9 @@ class StoreOrderRequest extends FormRequest
         return [
             'customer_id' => 'required|exists:customers,id',
             'status' => 'required',
-            'products' => 'required|json',
+            'products' => 'required|array',
             'completed_at' => 'nullable|date',
+            'delivered_at' => 'nullable|date'
         ];
     }
 }

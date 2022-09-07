@@ -28,11 +28,11 @@
                     {{ $order->customer->first_name }} {{ $order->customer->last_name }}
                     </a>
                 </div>
-                <div class="w-32">{{ $order->status }}</div>
+                <div class="w-32">{{ ucwords($order->status) }}</div>
                 <div class="w-32">{{ $order->total_products }}</div>
                 <div class="w-32">${{ $order->total_price }}</div>
                 <div class="w-32">${{ $order->taxes }}</div>
-                <div class="w-48">{{ $order->completed_at->diffForHumans() }}</div>
+                <div class="w-48">{{ ($order->completed_at)? $order->completed_at->diffForHumans() : 'Incomplete' }}</div>
             </div>
         @endforeach
         {{ $orders->links() }}

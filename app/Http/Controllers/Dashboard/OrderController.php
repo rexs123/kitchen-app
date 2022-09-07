@@ -26,7 +26,9 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        return view('dashboard.orders.show', $order);
+        return view('dashboard.orders.show', [
+            'order' => $order
+        ]);
     }
 
     public function create()
@@ -47,11 +49,12 @@ class OrderController extends Controller
             'total_price' => 0,
             'taxes' => 0,
             'completed_at' => ($request->completed_at)?: null,
+            'delivered_at' => ($request->delivered_at)?: null,
         ]);
 
         // todo: emit event  to update total product count and price summaries.
         foreach ($request->products as $product) {
-            $order->products()->attach($product->id);
+            $order->products()->attach($product);
         }
 
         $order->total_products = $order->products()->count();
@@ -65,14 +68,31 @@ class OrderController extends Controller
 
     public function edit(Order $order)
     {
-        return view('dashboard.orders.show', [
-           'order' => $order
+        return view('dashboard.orders.edit', [
+           'order' => $order,
+            'customer' => $order->customer,
+            'products' => $order->products,
         ]);
     }
 
     public function update(Order $order, UpdateOrderRequest $request)
     {
-        // update variable fields provided in form request
+        $order->update([
+            'status' => $request->status,
+            'completed_at' => $request->completed_at,
+            'delivered_at' => $request->delivered_at,
+        ]);
+
+        // todo: emit event  to update total product count and price summaries.
+        foreach ($request->products as $product) {
+            $order->products()->attach($product);
+        }
+
+        $order->total_products = $order->products()->count();
+        $order->total_price = $order->products->pluck('price')->sum();
+        $order->save();
+
+        // todo: tax calculation
 
         return redirect()->route('dashboard.orders.show', $order)->with('success', 'Order successfully updated.');
     }

@@ -14,9 +14,10 @@ class UpdateOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'status' => 'nullable',
-            'products' => 'nullable|json',
+            'status' => 'required',
+            'products' => 'array',
             'completed_at' => 'nullable|date',
+            'delivered_at' => 'nullable|date'
         ];
     }
 }
