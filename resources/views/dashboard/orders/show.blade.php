@@ -78,12 +78,14 @@
                             </div>
                         </div>
                         @if($product->allergens === $order->customer->allergies)
-                            <div class="text-red-500">
-                                Warning this customer might be allergic to this product!
-                            </div>
-                            <div>
-                                <strong class="block">Allergens Detected</strong>
-                                {{ implode(',', json_decode($product->allergens)) }}
+                            <div class="border-red-500 border-2 rounded-xl p-2.5 bg-red-500/20 text-xs">
+                                <div class="text-red-600">
+                                    Warning this customer might be allergic to this product!
+                                </div>
+                                <div>
+                                    <strong class="text-red-600">Allergens Detected:</strong>
+                                    {{ implode(',', json_decode($product->allergens)) }}
+                                </div>
                             </div>
                         @endif
                     @endforeach

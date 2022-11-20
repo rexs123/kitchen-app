@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -20,7 +19,7 @@ class OrderController extends Controller
     public function index()
     {
         return view('dashboard.orders.index', [
-            'orders' => Order::with(['customer', 'products'])->paginate(20),
+            'orders' => Order::with(['customer', 'products'])->orderByDesc('created_at')->paginate(20),
         ]);
     }
 
@@ -71,7 +70,7 @@ class OrderController extends Controller
         return view('dashboard.orders.edit', [
            'order' => $order,
             'customer' => $order->customer,
-            'products' => $order->products,
+            'products' => Product::all(),
         ]);
     }
 

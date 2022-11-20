@@ -5,9 +5,9 @@
         <div class="mb-3">
             <h1 class="text-xl font-bold">Creating a new Customer</h1>
         </div>
-        <form action="{{ route('dashboard.orders.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('dashboard.orders.update', $order) }}" method="post" enctype="multipart/form-data">
             @csrf
-            @method('POST')
+            @method('PUT')
             <div class="w-1/4 my-1">
                 <label for="customer_id" class="mb-1 block font-semibold">Customer</label>
                 <select
@@ -41,6 +41,7 @@
             </div>
 
             <div class="w-1/4 my-1">
+
                 <label for="products" class="mb-1 block font-semibold">Product</label>
                 <select
                     multiple
@@ -50,7 +51,7 @@
                     class="border border-gray-200 block p-1 block w-full @error('products') border-red-600 @enderror"
                 >
                     @foreach($products as $product)
-                        <option value="{{ $product->id }}">
+                        <option value="{{ $product->id }}" @if($order->products->firstWhere('id', $product->id)) selected @endif>
                             ${{ $product->price }}
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             {{ $product->name }}
@@ -64,7 +65,7 @@
             <div class="w-1/4 my-1">
                 <label for="delivered_at" class="mb-1 font-semibold block">Delivered or Picked up At</label>
                 <input
-                    type="date"
+                    type="datetime-local"
                     {{--                    todo: change this for a vue component, firefox does NOT support type=date --}}
                     id="delivered_at"
                     name="delivered_at"
@@ -78,7 +79,7 @@
             <div class="w-1/4 my-1">
                 <label for="completed_at" class="mb-1 font-semibold block">Completed At</label>
                 <input
-                    type="date"
+                    type="datetime-local"
                     {{--                    todo: change this for a vue component, firefox does NOT support type=date --}}
                     id="completed_at"
                     name="completed_at"
@@ -90,7 +91,7 @@
             </div>
 
 
-            <button type="submit" class="border border-gray-300 px-5 py-2">Create new Order</button>
+            <button type="submit" class="border border-gray-300 px-5 py-2">Update {{ $customer->first_name }}'s Order</button>
         </form>
     </div>
 @endsection

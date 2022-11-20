@@ -16,7 +16,7 @@
             <div class="w-64">Status</div>
             <div class="w-64">Number of Products</div>
             <div class="w-64">Handled by</div>
-            <div class="w-24">Delivered</div>
+            <div class="w-48">Delivered</div>
             <div class="w-48">Completed</div>
             <div class="w-48">Created At</div>
         </div>
@@ -27,11 +27,11 @@
                         {{ $order->customer->first_name }} {{ $order->customer->last_name }}
                     </a>
                 </div>
-                <div class="w-64">{{ ucwords($order->status) }}</div>
+                <div class="w-64">{{ $order->status }}</div>
                 <div class="w-64">{{ $order->total_products }}</div>
                 <div class="w-64">{{ $order->user->first_name }}</div>
-                <div class="w-24">{{ ($order->delivered_at)?: 'No' }}</div>
-                <div class="w-48">{{ ($order->created)?: 'No' }}</div>
+                <div class="w-48">{{ ($order->delivered_at)?: 'No' }}</div>
+                <div class="w-48">{{ ($order->completed_at)?: 'No' }}</div>
                 <div class="w-48">{{ $order->created_at }}</div>
             </div>
 
